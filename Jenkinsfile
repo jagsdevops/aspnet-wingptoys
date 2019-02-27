@@ -1,11 +1,15 @@
 pipeline{
-	agent {'msbuild'}
+	agent { node { label 'msbuild' } }
 	stages{
 		stage('Code-Check'){
-			echo "Example stage"
+			steps{
+				echo "Example stage"
+			}
 		}
-    stage('Build'){
-			bat 'build_debug.cmd'
+    		stage('Build'){
+			steps{
+				bat 'build_debug.cmd'
+			}
 		}
 	}
 	post{
