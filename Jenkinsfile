@@ -1,5 +1,5 @@
 pipeline{
-	agent msbuild
+	agent {'msbuild'}
 	stages{
 		stage('Code-Check'){
 			echo "Example stage"
