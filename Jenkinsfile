@@ -1,5 +1,5 @@
 pipeline{
-	agent { node { label 'msbuild' } }
+	agent { label 'msbuild' }
 	stages{
 		stage('Code-Check'){
 			steps{
@@ -8,14 +8,13 @@ pipeline{
 		}
     		stage('Build'){
 			steps{
-				bat 'build_debug.cmd'
+				bat " \"${tool 'msbuild15'}\" build.xml /p:Configuration=Debug"
 			}
 		}
 	}
 	post{
 		always{
-			archive '*/target/**/*'
-			junit '*/target/reports/*.xml'
+            echo "todo: archiveArtifacts"
 		}
 		failure{
 			echo "yikes, build broke"
